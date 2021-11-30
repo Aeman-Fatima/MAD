@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/pizza-deliveries",
+      "handler": "pizza-delivery.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/pizza-deliveries/count",
+      "handler": "pizza-delivery.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/pizza-deliveries/:id",
+      "handler": "pizza-delivery.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/pizza-deliveries",
+      "handler": "pizza-delivery.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/pizza-deliveries/:id",
+      "handler": "pizza-delivery.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/pizza-deliveries/:id",
+      "handler": "pizza-delivery.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

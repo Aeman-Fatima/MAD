@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pizza_data",
+  "info": {
+    "name": "pizza_data"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "ingredients": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    }
+  }
+}

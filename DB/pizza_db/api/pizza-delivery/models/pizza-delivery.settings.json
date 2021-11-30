@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pizza_deliveries",
+  "info": {
+    "name": "Pizza-Delivery",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Image": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "Name": {
+      "type": "string"
+    },
+    "Price": {
+      "type": "string"
+    },
+    "Ingredient": {
+      "type": "text"
+    }
+  }
+}
