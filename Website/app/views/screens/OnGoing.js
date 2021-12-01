@@ -9,18 +9,18 @@ import { PrimaryButton } from '../components/Button';
 
 const OnGoing = ({ navigation }) => {
 
-    const [data, dataSet] = useState(null)
+    const [data, dataSet] = useState(null);
 
     useEffect(() => {
         async function fetchMyAPI() {
-            let response = await fetch('http://localhost:1337/Pizza-Deliveries')
-            response = await response.json()
-            dataSet(response)
-            console.log(response[0].Image[0].url)
+            let response = await fetch('http://192.168.100.176:1337/Pizza-Deliveries');
+            response = await response.json();
+            dataSet(response);
+            console.log(response[0].Image[0].url);
         }
 
-        fetchMyAPI()
-    }, [])
+        fetchMyAPI();
+    }, []);
 
     const OnGoing = ({ item }) => {
         return (

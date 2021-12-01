@@ -6,7 +6,7 @@ import {
     TouchableOpacity,
     Image
 } from 'react-native';
-import axios from 'axios'
+import axios from 'axios';
 
 import styles from './Style1.js';
 import { object } from 'yup';
@@ -24,7 +24,7 @@ const Login = ({ navigation }) => {
                 identifier: userName,
                 password: password
             };
-            const res = await axios.post(`http://localhost:1337/auth/local`, form_data);
+            const res = await axios.post(`http://192.168.100.176:1337/auth/local`, form_data);
             NavigationActions.navigate('Home');
 
             console.log(res);
@@ -32,7 +32,7 @@ const Login = ({ navigation }) => {
         catch (e) {
             console.log(e);
         }
-    }
+    };
 
     return (
         <View style={styles.container}>
@@ -86,7 +86,7 @@ const Login = ({ navigation }) => {
             </TouchableOpacity>
         </View>
     );
-}
+};
 
 
 export default Login;

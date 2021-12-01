@@ -9,26 +9,26 @@ import { PrimaryButton } from '../components/Button';
 
 const OrderHistory = ({ navigation }) => {
 
-    const [data, dataSet] = useState(null)
+    const [data, dataSet] = useState(null);
 
     useEffect(() => {
         async function fetchMyAPI() {
-            let response = await fetch('http://localhost:1337/Pizza-Deliveries')
-            response = await response.json()
-            dataSet(response)
+            let response = await fetch('http://192.168.100.176:1337/Pizza-Deliveries');
+            response = await response.json();
+            dataSet(response);
         }
 
-        fetchMyAPI()
-    }, [])
+        fetchMyAPI();
+    }, []);
 
     const OrderHistory = ({ item }) => {
-        console.log(item.Image[0].formats.url)
+        console.log(item.Image[0].formats.url);
 
         return (
 
             <View style={style.historyCard}>
                 <Image source={require('../../assets/meatPizza.png')} style={{ height: 80, width: 80 }} />
-                {/* <Image source={"http://localhost:1337" + item.Image[0].formats.url} style={{ height: 80, width: 80 }} /> */}
+                {/* <Image source={"http://192.168.100.176:1337" + item.Image[0].formats.url} style={{ height: 80, width: 80 }} /> */}
                 <View
                     style={{
                         height: 100,

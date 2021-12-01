@@ -17,25 +17,36 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../consts/colors';
 import categories from '../../consts/categories';
-import foods from '../../consts/foods';
 const { width } = Dimensions.get('screen');
 const cardWidth = width / 2 - 20;
 
 const HomeScreen = ({ navigation }) => {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
 
-  const [data, dataSet] = useState(null)
+  const [data, dataSet] = useState(null);
+  const [foods, setFood] = useState(null);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
-    async function fetchMyAPI() {
-      let response = await fetch('http://localhost:1337/Users')
-      response = await response.json()
-      dataSet(response)
-      console.log(response[0].Image[0].url)
-    }
+    () => {
+      fetch('http://192.168.100.176:1337/Members').then(response => response.json())
+        .then((res) => dataSet(res))
+        .catch(err => console.log('Error in members request'));
+    };
+  }, []);
 
-    fetchMyAPI()
-  }, [])
+  useEffect(() => {
+    const toSearch = search ? search : categories[selectedCategoryIndex].name;
+    fetch(`http://192.168.100.176:1337/pizza-data?name_contains=${toSearch}`)
+      .then(response => response.json())
+      .then(
+        (res) => {
+          setFood(res);
+        }
+      )
+      .catch(err => console.log('Error in foods request'));
+
+  }, [selectedCategoryIndex]);
 
   const ListCategories = () => {
     return (
@@ -81,6 +92,7 @@ const HomeScreen = ({ navigation }) => {
     );
   };
   const Card = ({ food }) => {
+    console.log(food.img[0]);
     return (
       <TouchableHighlight
         underlayColor={COLORS.white}
@@ -88,7 +100,7 @@ const HomeScreen = ({ navigation }) => {
         onPress={() => navigation.navigate('DetailsScreen', food)}>
         <View style={style.card}>
           <View style={{ alignItems: 'center', top: -40 }}>
-            <Image source={food.image} style={{ height: 120, width: 120 }} />
+            <Image source={{ uri: `http://192.168.100.176:1337${food.img[0].url}` }} style={{ height: 120, width: 120 }} />
           </View>
           <View style={{ marginHorizontal: 20 }}>
             <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{food.name}</Text>
@@ -104,7 +116,7 @@ const HomeScreen = ({ navigation }) => {
               justifyContent: 'space-between',
             }}>
             <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
-              ${food.price}
+              {'$' + food.price}
             </Text>
             <View style={style.addToCartBtn}>
               <Icon name="add" size={20} color={COLORS.white} />
@@ -144,6 +156,10 @@ const HomeScreen = ({ navigation }) => {
           <TextInput
             style={{ flex: 1, fontSize: 18 }}
             placeholder="Search for food"
+            onEndEditing={(e) => {
+              setSearch(e.nativeEvent.text);
+              setSelectedCategoryIndex(null);
+            }}
           />
         </View>
         <View style={style.sortBtn}>
@@ -153,12 +169,12 @@ const HomeScreen = ({ navigation }) => {
       <View>
         <ListCategories />
       </View>
-      <FlatList
+      {foods && <FlatList
         showsVerticalScrollIndicator={false}
         numColumns={2}
         data={foods}
         renderItem={({ item }) => <Card food={item} />}
-      />
+      />}
     </SafeAreaView>
   );
 };

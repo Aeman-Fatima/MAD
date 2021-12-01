@@ -23,7 +23,7 @@ const SignUp = ({ navigation }) => {
                 email: email,
                 password: password
             };
-            const res = await axios.post(`http://localhost:1337/auth/local/register`, form_data);
+            const res = await axios.post(`http://192.168.100.176:1337/auth/local/register`, form_data);
             NavigationActions.navigate('Home');
 
             console.log(res);
@@ -31,7 +31,7 @@ const SignUp = ({ navigation }) => {
         catch (e) {
             console.log(e);
         }
-    }
+    };
 
     const NavigationActions = navigation;
 
@@ -83,7 +83,7 @@ const SignUp = ({ navigation }) => {
             <Text style={styles.policyText}>By creating an account you are agreeing to FAST FOOD App User Agreement</Text>
         </View>
     );
-}
+};
 
 
 export default SignUp;

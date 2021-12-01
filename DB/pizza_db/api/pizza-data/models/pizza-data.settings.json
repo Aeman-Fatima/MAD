@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "pizza_data",
   "info": {
-    "name": "pizza_data"
+    "name": "pizza_data",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -22,6 +23,18 @@
     },
     "image": {
       "type": "string"
+    },
+    "img": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
     }
   }
 }
