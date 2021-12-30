@@ -29,7 +29,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     () => {
-      fetch('http://192.168.100.176:1337/Members').then(response => response.json())
+      fetch('http://localhost:1337/Members').then(response => response.json())
         .then((res) => dataSet(res))
         .catch(err => console.log('Error in members request'));
     };
@@ -37,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     const toSearch = search ? search : categories[selectedCategoryIndex].name;
-    fetch(`http://192.168.100.176:1337/pizza-data?name_contains=${toSearch}`)
+    fetch(`http://localhost:1337/pizza-data?name_contains=${toSearch}`)
       .then(response => response.json())
       .then(
         (res) => {
@@ -46,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
       )
       .catch(err => console.log('Error in foods request'));
 
-  }, [selectedCategoryIndex]);
+  }, [selectedCategoryIndex, search]);
 
   const ListCategories = () => {
     return (
@@ -100,7 +100,7 @@ const HomeScreen = ({ navigation }) => {
         onPress={() => navigation.navigate('DetailsScreen', food)}>
         <View style={style.card}>
           <View style={{ alignItems: 'center', top: -40 }}>
-            <Image source={{ uri: `http://192.168.100.176:1337${food.img[0].url}` }} style={{ height: 120, width: 120 }} />
+            <Image source={{ uri: `http://localhost:1337${food.img[0].url}` }} style={{ height: 120, width: 120 }} />
           </View>
           <View style={{ marginHorizontal: 20 }}>
             <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{food.name}</Text>
@@ -158,7 +158,7 @@ const HomeScreen = ({ navigation }) => {
             placeholder="Search for food"
             onEndEditing={(e) => {
               setSearch(e.nativeEvent.text);
-              setSelectedCategoryIndex(null);
+              setSelectedCategoryIndex(0);
             }}
           />
         </View>

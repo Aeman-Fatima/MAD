@@ -13,7 +13,7 @@ const OrderHistory = ({ navigation }) => {
 
     useEffect(() => {
         async function fetchMyAPI() {
-            let response = await fetch('http://192.168.100.176:1337/Pizza-Deliveries');
+            let response = await fetch('http://localhost:1337/Pizza-Deliveries');
             response = await response.json();
             dataSet(response);
         }
@@ -28,7 +28,7 @@ const OrderHistory = ({ navigation }) => {
 
             <View style={style.historyCard}>
                 <Image source={require('../../assets/meatPizza.png')} style={{ height: 80, width: 80 }} />
-                {/* <Image source={"http://192.168.100.176:1337" + item.Image[0].formats.url} style={{ height: 80, width: 80 }} /> */}
+                {/* <Image source={"http://localhost:1337" + item.Image[0].formats.url} style={{ height: 80, width: 80 }} /> */}
                 <View
                     style={{
                         height: 100,

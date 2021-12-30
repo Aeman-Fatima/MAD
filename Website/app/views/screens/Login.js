@@ -24,7 +24,7 @@ const Login = ({ navigation }) => {
                 identifier: userName,
                 password: password
             };
-            const res = await axios.post(`http://192.168.100.176:1337/auth/local`, form_data);
+            const res = await axios.post(`http://localhost:1337/auth/local`, form_data);
             NavigationActions.navigate('Home');
 
             console.log(res);
